@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>1</title>
+</head>
+<body>
+
+	<form action="">
+		Valor: <input type="text" name="valor" id="valor" /> <br>
+		Quantidade: <input type="text" name="quantidade" id="quantidade" /> <br>
+		Total: <input type="text" name="total" id="total" disabled/>
+	</form>
+
+	<script type="text/javascript">
+
+		function getId(id) {
+			return document.getElementById(id);
+		}
+
+		function total( un, qnt ) {
+			return parseInt(un) * parseInt(qnt);
+		}
+
+
+		window.onload = function() {
+
+			getId('quantidade').addEventListener('keyup', function(){
+				var result = total( getId('valor').value , this.value );
+				getId('total').value = String(result.toFixed(0));
+			});
+		}
+
+		
+	</script>
+</body>
+</html>

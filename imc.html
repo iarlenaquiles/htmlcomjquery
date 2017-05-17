@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>IMC</title>
+	<meta charset="utf-8">
+</head>
+<body>
+
+	<form action="">
+		Peso: <input type="text" name="peso" id="peso" /> <br>
+		Altura: <input type="text" name="altura" id="altura" /> <br>
+		<input type="text" name="total" id="total" disabled/>Kg/m²<br>
+		<input type="text" name="situacao" id="situacao" disabled>
+	</form>
+
+	<script type="text/javascript">
+
+		function getId(id) {
+			return document.getElementById(id);
+		}
+
+		function total( un, qnt ) {
+			return parseFloat(un) / Math.pow(parseFloat(qnt), 2) ;
+		}
+
+
+		window.onload = function() {
+			
+			getId('altura').addEventListener('keyup', function(){
+				var result = total(getId('peso').value, this.value);
+				getId('total').value = String(result.toFixed(2));
+
+				if(result < 16){
+					getId('situacao').value = String("Magreza grave");
+				}else if(result < 17){
+					getId('situacao').value = String("Magreza moderada");
+				}else if(result < 18.5){
+					getId('situacao').value = String("Magreza leve");
+				}else if(result < 25){
+					getId('situacao').value = String("Saudável");
+				}else if(result < 30){
+					getId('situacao').value = String("Sobrepeso");
+				}else if(result < 35){
+					getId('situacao').value = String("Obesidade Grau I");
+				}else if(result < 40){
+					getId('situacao').value = String("Obesidade Grau II (severa)");
+				}else {
+					getId('situacao').value = String("Obesidade Grau III (mórbida)");
+				}
+
+			});
+
+			
+		}
+
+		
+	</script>
+</body>
+</html>

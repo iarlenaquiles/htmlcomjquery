@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	<title>Posicao com jQuery</title>
+</head>
+<body>
+
+	<p>Coordenadas: <span></span></p>
+
+
+	<script>
+		$(document).ready(function(){
+			$(document).mousemove(function(event){
+				$("span").text(event.pageX + ", " + event.pageY);
+			});
+
+			$("html").on("mousemove", function(e){
+				$("span").css({position:"absolute", top: e.pageY + "px", left: e.pageX + "px";});
+			});
+		});
+	</script>
+</body>
+</html>

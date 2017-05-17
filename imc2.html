@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>IMC com jQuery</title>
+	<meta charset="utf-8">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+</head>
+<body>
+
+	<form action="">
+		Peso: <input type="text" name="peso" id="peso" /> <br>
+		Altura: <input type="text" name="altura" id="altura" /> <br>
+		<input type="text" name="total" id="total" disabled/>Kg/m²<br>
+		<input type="text" name="situacao" id="situacao" disabled>
+	</form>
+
+	<script type="text/javascript">
+
+		$(document).ready(function(){
+
+			function total( un, qnt ) {
+				return parseFloat(un) / Math.pow(parseFloat(qnt), 2) ;
+			}
+
+			$("#altura").keyup(function(e){
+				var result = total($("#peso").val(), $(this).val());
+				$("#total").val(result);
+
+				if(result < 16){
+					$("#situacao").val("Magreza grave");
+				}else if(result < 17){
+					$("#situacao").val("Magreza moderada");
+				}else if(result < 18.5){
+					$("#situacao").val("Magreza leve");
+				}else if(result < 25){
+					$("#situacao").val("Saudável");
+				}else if(result < 30){
+					$("#situacao").val("Sobrepeso");
+				}else if(result < 35){
+					$("#situacao").val("Obesidade Grau I");
+				}else if(result < 40){
+					$("#situacao").val("Obesidade Grau II (severa)");
+				}else {
+					$("#situacao").val("Obesidade Grau III (mórbida)");
+				}
+
+			});
+
+		});
+		
+	</script>
+</body>
+</html>
